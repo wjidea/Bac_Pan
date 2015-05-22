@@ -1,0 +1,2 @@
+Corn: AA38.gff AA78-5.gff Aa99-2.gff
+Turf: COLB1.gff INDB2.gff INV.gff KL3.gff MDB1.gff NCT3.gff QH1.gff QHB1.gff Sa2.gff SF12.gff SH7.gff MOR.gff
