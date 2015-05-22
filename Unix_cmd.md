@@ -1,4 +1,4 @@
-### Data analyses for Pan-Core Genome project
+## Data analyses for Pan-Core Genome project
 **1\. Data clean-up**
 
 Change fasta file with a clean title line for each of the sequence. Then the
@@ -81,6 +81,11 @@ comm -23 gene_set1_intersect gene_set2_union
 # filter the genes present in all maize pathogens but the turf
 comm -23 gene_set2_intersect gene_set1_union
 ```
+
+###TODO
+- [x] list of core genes shared within each host of plants
+- [] check the groups within Aa turf
+
 
 
 ### Dependencies
