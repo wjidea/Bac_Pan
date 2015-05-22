@@ -5,7 +5,7 @@ Change fasta file with a clean title line for each of the sequence. Then the mod
 
 ```bash
     #!/bin/bash
-    # change the first line of fasta file
+    change the first line of fasta file
     var=">Contig1"
     file=$1
     #sed was used to change the first line of each fasta file
