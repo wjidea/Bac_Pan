@@ -84,7 +84,7 @@ comm -23 gene_set2_intersect gene_set1_union
 
 
 ### Dependencies
-[Roary](https://github.com/sanger-pathogens/Roary) - Thanks team Roary for
+1. [Roary](https://github.com/sanger-pathogens/Roary) - Thanks team Roary for
 developing such nice tool
-[Prokka](http://www.vicbioinformatics.com/software.prokka.shtml) - I wish
+2. [Prokka](http://www.vicbioinformatics.com/software.prokka.shtml) - I wish
 eukaryotic genome annotation can be as easy as in prokka
