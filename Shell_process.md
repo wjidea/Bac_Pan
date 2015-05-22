@@ -29,6 +29,7 @@ Prokka will take fasta file as an input to predict CDS, rRNA, CRISPR, and ncRNA 
 ```
 
 3\. Run pan-genome process with **Roary**
+
 **Roary** is a recently developed tool to study pan and core genomes of prokaryotic species. Function-wise is very similar to what have been developed form the OrthoMCL method. But their clustering algorithm prior to all-to-all blastp reduce the computation time for the orthologs analysis. Script to run **Roary** is below:
 
 ```bash
