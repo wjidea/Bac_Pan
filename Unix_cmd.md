@@ -2,7 +2,8 @@
 **1\. Data clean-up**
 
 Change fasta file with a clean title line for each of the sequence. Then the
-modified fasta files will be fed to **"Prokka"** to perform prokayotic genome annotations.Shell scripts below:
+modified fasta files will be fed to **"Prokka"** to perform prokayotic genome
+annotations.Shell scripts below:
 
 ```bash
     #!/bin/bash
@@ -19,7 +20,8 @@ recommend you change a more readable name to use as an input.
 **2\. Prokaryotic genome annotation with _Prokka_**
 
 Prokka will take fasta file as an input to predict CDS, rRNA, CRISPR, and ncRNA
-from prokaryotic genome (also works for Archae and virus). The script for genome annotation is below:
+from prokaryotic genome (also works for Archae and virus). The script for genome
+annotation is below:
 
 ```bash
     #!/bin/bash
@@ -52,14 +54,16 @@ roary -p 11 -e *.gff  # this step may take about 40-50 min
 # query for union and intersection between groups of bacteria
 
 # intersections for all turf pathogens
-query_pan_genome -a intersection -g clustered_proteins COLB1.gff INDB2.gff INV.gff KL3.gff MDB1.gff NCT3.gff QH1.gff QHB1.gff Sa2.gff SF12.gff SH7.gff MOR.gff
+query_pan_genome -a intersection -g clustered_proteins COLB1.gff INDB2.gff \
+  INV.gff KL3.gff MDB1.gff NCT3.gff QH1.gff QHB1.gff Sa2.gff SF12.gff SH7.gff MOR.gff
 cat pan_genome_results | cut -f1 -d : | sort > gene_set1_intersect
 # intersections for all maize pathogens
 query_pan_genome -a intersection -g clustered_proteins AA38.gff AA78-5.gff Aa99-2.gff
 cat pan_genome_results | cut -f1 -d : | sort > gene_set2_intersect
 
 # union for all turf pathogens
-query_pan_genome -a union -g clustered_proteins COLB1.gff INDB2.gff INV.gff KL3.gff MDB1.gff NCT3.gff QH1.gff QHB1.gff Sa2.gff SF12.gff SH7.gff MOR.gff
+query_pan_genome -a union -g clustered_proteins COLB1.gff INDB2.gff INV.gff \
+  KL3.gff MDB1.gff NCT3.gff QH1.gff QHB1.gff Sa2.gff SF12.gff SH7.gff MOR.gff
 cat pan_genome_results | cut -f1 -d : | sort > gene_set1_union
 # union for all maize pathogens
 query_pan_genome -a union -g clustered_proteins AA38.gff AA78-5.gff Aa99-2.gff
