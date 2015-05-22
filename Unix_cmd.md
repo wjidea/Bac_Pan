@@ -84,7 +84,7 @@ comm -23 gene_set2_intersect gene_set1_union
 
 ###TODO
 - [x] list of core genes shared within each host of plants
-- [] check the groups within Aa turf
+- [ ] check the groups within Aa turf
 
 
 
