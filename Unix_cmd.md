@@ -81,3 +81,10 @@ comm -23 gene_set1_intersect gene_set2_union
 # filter the genes present in all maize pathogens but the turf
 comm -23 gene_set2_intersect gene_set1_union
 ```
+
+
+### Dependencies
+[Roary](https://github.com/sanger-pathogens/Roary) - Thanks team Roary for
+developing such nice tool
+[Prokka](http://www.vicbioinformatics.com/software.prokka.shtml) - I wish
+eukaryotic genome annotation can be as easy as in prokka
