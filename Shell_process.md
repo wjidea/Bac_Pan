@@ -14,21 +14,29 @@ Change fasta file with a clean title line for each of the sequence. Then the mod
 
 If the multi-fasta file has a title more than 20 characters long, prokka will recommend you change a more readable name to use as an input.
 
-**2\. Prokaryotic genome annotation with **Prokka****
+**2\. Prokaryotic genome annotation with _Prokka_**
 
 Prokka will take fasta file as an input to predict CDS, rRNA, CRISPR, and ncRNA from prokaryotic genome (also works for Archae and virus). The script for genome annotation is below:
 
 ```bash
     #!/bin/bash
+    # save this script as a shell script file
     FILE=$1
     prokka --outdir ~/Files/OrthoMCL_turf/Fasta/${FILE%%.fa} \
     --force --prefix ${FILE%%.fa} --locustag ${FILE%%.fa} \
     --kingdom Bacteria --addgenes $FILE
-    # copy all the file to
-    cp ~/Files/OrthoMCL_turf/Fasta/*/*.gff ../GFF/
+
 ```
 
-**3\. Run pan-genome process with **Roary****
+```bash
+# this step may take about 1 hour
+for FILE in *.fasta; do ./prokka_run.sh $FILE; done;
+# copy all the file to
+cp ~/Files/OrthoMCL_turf/Fasta/*/*.gff ../GFF/
+
+```
+
+**3\. Run pan-genome process with _Roary_**
 
 **Roary** is a recently developed tool to study pan and core genomes of prokaryotic species. Function-wise is very similar to what have been developed form the OrthoMCL method. But their clustering algorithm prior to all-to-all blastp reduce the computation time for the orthologs analysis. Script to run **Roary** is below:
 
@@ -56,7 +64,8 @@ cat pan_genome_results | cut -f1 -d : | sort > gene_set2_union
 After extract the gene list from the intersection and union from the data, genes unique to maize and genes unique to turf can be extracted from the gene lists. Extraction code below:
 
 ```bash
+# filter the genes present in all turf pathogens but the maize
 comm -23 gene_set1_intersect gene_set2_union
-
-comm -23 gene_set1_intersect gene_set2_union
+# filter the genes present in all maize pathogens but the turf
+comm -23 gene_set2_intersect gene_set1_union
 ```
