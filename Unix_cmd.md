@@ -51,9 +51,9 @@ computation time for the orthologs analysis. Script to run **Roary** is below:
 ```bash
     roary -p 11 -e *.gff  # this step may take about 40-50 min
 
-# query for union and intersection between groups of bacteria
+    # query for union and intersection between groups of bacteria
 
-# intersections for all turf pathogens
+    # intersections for all turf pathogens
     query_pan_genome -a intersection -g clustered_proteins COLB1.gff INDB2.gff \
       INV.gff KL3.gff MDB1.gff NCT3.gff QH1.gff QHB1.gff Sa2.gff SF12.gff SH7.gff MOR.gff
     cat pan_genome_results | cut -f1 -d : | sort > gene_set1_intersect
@@ -82,9 +82,40 @@ After extract the gene list from the intersection and union from the data, genes
     comm -23 gene_set2_intersect gene_set1_union
 ```
 
+Based on the whole genome SNP tree of Acidovorax spp., we found three majoe clusters:
+ - Group1: KL3, INV, QHB1, MDB1, NCT3
+ - Group2: SH7, QH1, MOR, COLB1, INDB2, SF12
+ - Group3: Sa2  
+We are intersted looking into the genes shared among those groups
+
+```bash
+    # intersections for group1 turf pathogens
+    query_pan_genome -a intersection -g clustered_proteins KL3.gff INV.gff \
+                     QHB1.gff MDB1.gff NCT3.gff
+    cat pan_genome_results | cut -f1 -d : | sort > gene_group1_intersect
+    wc -l < gene_group1_intersect
+    # intersections for group2 turf pathogens
+    query_pan_genome -a intersection -g clustered_proteins SH7.gff QH1.gff MOR.gff \
+                     COLB1.gff INDB2.gff SF12.gff
+    cat pan_genome_results | cut -f1 -d : | sort > gene_group2_intersect
+    wc -l < gene_group2_intersect
+    # genes in group3
+    cat Sa2.gff | grep -P "\tCDS\t"
+
+```
+Pan genome results with genes shared within groups:
+| Groups | Intersection |
+|--------|--------------|
+| 1      | 1444         |
+| 2      |              |
+| 3      | 3935         |
+
+
 ###TODO
 - [x] list of core genes shared within each host of plants
-- [ ] check the groups within Aa turf
+- [x] check the groups within Aa turf
+- [x] find gene and gene contents among those bacteria
+- [ ] Phylogenomics analysis of the CDSs -- in progress
 
 
 
