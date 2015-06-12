@@ -104,6 +104,7 @@ We are intersted looking into the genes shared among those groups
 
 ```
 Pan genome results with genes shared within groups:  
+
 | Groups | Intersection |
 |--------|--------------|
 | 1      | 1444         |
