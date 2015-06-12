@@ -38,7 +38,6 @@ annotation is below:
     for FILE in *.fasta; do ./prokka_run.sh $FILE; done;
     # copy all the file to
     cp ~/Files/OrthoMCL_turf/Fasta/*/*.gff ../GFF/
-
 ```
 
 **3\. Run pan-genome process with _Roary_**
@@ -103,13 +102,21 @@ We are intersted looking into the genes shared among those groups
     cat Sa2.gff | grep -P "\tCDS\t"
 
 ```
+
+###Results
+
 Pan genome results with genes shared within groups:  
 
 | Groups | Intersection |
 |--------|--------------|
 | 1      | 1444         |
-| 2      |              |
-| 3      | 3935         |
+| 2      | 1444         |
+| 3      | 3828         |
+
+Results Venn Diagram to show the overlap between groups:
+![Venn Diagram](data/PieChart_g1g2g3.png)
+
+
 
 
 ###TODO
@@ -117,6 +124,7 @@ Pan genome results with genes shared within groups:
 - [x] check the groups within Aa turf
 - [x] find gene and gene contents among those bacteria
 - [ ] Phylogenomics analysis of the CDSs -- in progress
+- [ ] Compare the core genome sizes of the turf pathogens to the maize pathogens -- in progress
 
 
 
