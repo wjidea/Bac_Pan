@@ -103,7 +103,7 @@ We are intersted looking into the genes shared among those groups
     cat Sa2.gff | grep -P "\tCDS\t"
 
 ```
-Pan genome results with genes shared within groups:
+Pan genome results with genes shared within groups:  
 | Groups | Intersection |
 |--------|--------------|
 | 1      | 1444         |
