@@ -1,5 +1,5 @@
 ## Data analyses for Pan-Core Genome project
-**1\. Data clean-up**
+####1\. Data clean-up
 
 Change fasta file with a clean title line for each of the sequence. Then the
 modified fasta files will be fed to **"Prokka"** to perform prokayotic genome
@@ -17,7 +17,7 @@ annotations.Shell scripts below:
 If the multi-fasta file has a title more than 20 characters long, prokka will
 recommend you change a more readable name to use as an input.
 
-**2\. Prokaryotic genome annotation with _Prokka_**
+####2\. Prokaryotic genome annotation with _Prokka_
 
 Prokka will take fasta file as an input to predict CDS, rRNA, CRISPR, and ncRNA
 from prokaryotic genome (also works for Archae and virus). The script for genome
@@ -40,7 +40,7 @@ annotation is below:
     cp ~/Files/OrthoMCL_turf/Fasta/*/*.gff ../GFF/
 ```
 
-**3\. Run pan-genome process with _Roary_**
+####3\. Run pan-genome process with _Roary_
 
 **Roary** is a recently developed tool to study pan and core genomes of prokaryotic
 species. Function-wise is very similar to what have been developed form the OrthoMCL
@@ -85,7 +85,7 @@ Based on the whole genome SNP tree of Acidovorax spp., we found three majoe clus
  - Group1: KL3, INV, QHB1, MDB1, NCT3
  - Group2: SH7, QH1, MOR, COLB1, INDB2, SF12
  - Group3: Sa2  
-We are intersted looking into the genes shared among those groups
+We are interested looking into the genes shared among those groups
 
 ```bash
     # intersections for group1 turf pathogens
@@ -103,7 +103,18 @@ We are intersted looking into the genes shared among those groups
 
 ```
 
-###Results
+####4\. Run phylogenomic analyses
+
+Pipeline for analyze this objective:
+    1. Extract consensus sequences from all the isolates **Roary**
+    2. Multiple sequences alignment for all the consensus sequences with **MULSCLE**
+    3. Trim sequence alignment with **Trimal**
+    4. Build phylogenetic tree with **FastTree**
+
+
+
+
+###Partial Results
 
 Pan genome results with genes shared within groups:  
 
@@ -115,8 +126,6 @@ Pan genome results with genes shared within groups:
 
 Results Venn Diagram to show the overlap between groups:
 ![Venn Diagram](data/PieChart_g1g2g3.png)
-
-
 
 
 ###TODO
