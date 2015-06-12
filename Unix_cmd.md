@@ -105,7 +105,8 @@ We are interested looking into the genes shared among those groups
 
 ####4\. Run phylogenomic analyses
 
-Pipeline for analyze this objective:
+Pipeline for analyze this objective:  
+
     1. Extract consensus sequences from all the isolates **Roary**
     2. Multiple sequences alignment for all the consensus sequences with **MULSCLE**
     3. Trim sequence alignment with **Trimal**
