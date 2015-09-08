@@ -7,10 +7,10 @@ annotations.Shell scripts below:
 
 ```bash
     #!/bin/bash
-    change the first line of fasta file
+    # change the first line of fasta file
     var=">Contig1"
     file=$1
-    #sed was used to change the first line of each fasta file
+    # sed was used to change the first line of each fasta file
     sed "1s/.*/$var/" $file > ${file%%fasta}1.fa
 ```
 
@@ -128,13 +128,21 @@ Pan genome results with genes shared within groups:
 Results Venn Diagram to show the overlap between groups:
 ![Venn Diagram](data/PieChart_g1g2g3.png)
 
+###Compare the core genome size
+To compare the core genome size based on the multi locu genotyping results, we decided to use Roary to calculate the core genome size for the turf, maize, and melon Aa species/strains.
+
+```bash
+# find the core genome size for all gff files
+query_pan_genome -a intersection -g clustered_proteins *.gff
+```
+
 
 ###TODO
 - [x] list of core genes shared within each host of plants
 - [x] check the groups within Aa turf
 - [x] find gene and gene contents among those bacteria
 - [ ] Phylogenomics analysis of the CDSs -- in progress
-- [ ] Compare the core genome sizes of the turf pathogens to the maize pathogens -- in progress
+- [x] Compare the core genome sizes of the turf pathogens to the maize pathogens
 
 
 
