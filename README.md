@@ -28,7 +28,7 @@ annotation is below:
     # save this script as a shell script file
     FILE=$1
     PATh=$2
-    prokka --outdir $PATH \
+    prokka --outdir $PATH${FILE%%.fa} \
     --force --prefix ${FILE%%.fa} --locustag ${FILE%%.fa} \
     --kingdom Bacteria --addgenes --cpus 11 $FILE
 
