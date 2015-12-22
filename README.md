@@ -27,7 +27,8 @@ annotation is below:
     #!/bin/bash
     # save this script as a shell script file
     FILE=$1
-    prokka --outdir ~/Files/OrthoMCL_turf/Fasta/${FILE%%.fa} \
+    PATh=$2
+    prokka --outdir $PATH \
     --force --prefix ${FILE%%.fa} --locustag ${FILE%%.fa} \
     --kingdom Bacteria --addgenes --cpus 11 $FILE
 
