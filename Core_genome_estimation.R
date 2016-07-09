@@ -39,7 +39,8 @@ length(x1)
 
 core_genes <- function(s1 = 3,s2 = 4,s3 = 5){
   core_set <- intersect(work_data[,s1],intersect(work_data[,s2],work_data[,s3]))
-  return(length(core_set))
+  pan_set <- union(work_data[,s1],union(work_data[,s2],work_data[,s3]))
+  return(c(length(core_set),length(pan_set)))
 }
 
 # resampling calculate core genome from 3 randomly sampled strains
@@ -68,19 +69,21 @@ colnames(work_data)[g1_maize_index]
 g2_maize_index <- c(17,14,12,6,8,16,3:5)
 colnames(work_data)[g2_maize_index]
 # task 1 maize pathogens (3 strains) AA78, Aa99, AA38
-T1 <- core_genes()
+T1 <- core_genes()[1]
 T1
 
 # task 2 - all turf pathogens (12 strains)
 store_coreset_2 <- c()
+store_panset_2 <- c()
 i <- 0
 for (i in 1:1000){
   sub_strains <- turf_strains_index[sample(1:length(turf_strains_index),3,replace = FALSE)]
-  store_coreset_2[i] <- core_genes(sub_strains[1],sub_strains[2],sub_strains[3])
+  store_coreset_2[i] <- core_genes(sub_strains[1],sub_strains[2],sub_strains[3])[1]
+  store_panset_2[i] <- core_genes(sub_strains[1],sub_strains[2],sub_strains[3])[2]
 }
-summary(store_coreset_2)
-boxplot(store_coreset_2, main = "12 Turf strain")
-
+summary(store_panset_2)
+boxplot(cbind(store_coreset_2,store_panset_2), main = "12 Turf strain",type ="l")
+boxplot(store_panset_2,add=TRUE)
 # task 3 group1 turf (KL3, INV, QHB1 MDB1, NCT3)
 store_coreset_3 <- c()
 i <- 0

@@ -3,13 +3,50 @@ library(ape)
 library(ggplot2)
 library(ggtree)
 library(gridExtra)
+library("colorspace")
 #vignette("ggtree", package = "ggtree")
 
-
 # read in data
-setwd("/Users/wjidea/GoogleDrive/Graduate_Study/4_Collaborations/2014_Acidovorax_Quan/Results/trees_mod/")
+setwd("/Users/wjidea/Desktop/alnTre 2/trees/")
 files <- dir("./", pattern = ".*tre")
-trees_list <- lapply(files, read.tree)
+trees_list <- lapply(files, function(x) ggtree::read.tree(x, tree.names = paste(x)))
+
+cls <- list(maize=c("AA19", "AA78", "AA81", "Aa99"),
+            Turf1=c("INV", "KL3", "URI9", "QHB1", "MDB1", "NCT3"),
+            Turf2=c("COLB", "INDB", "SF12", "QH1", "MOR","SH7", "MD5"),
+            Others=c("AC01", "Cat9", "Sa2"))
+lenL <- length(trees_list) - 2
+j = 0
+treeL <- list()
+for (i in 1:lenL){
+  j = j + 1
+  trees_list[[i]]$tip.label <- gsub("_1_[0-9]{2,5}$", "",trees_list[[i]]$tip.label, perl = TRUE)
+  tree <- groupOTU(trees_list[[i]], cls)
+  plotTree <- ggtree(tree) + geom_tiplab(aes(color = group)) +
+              scale_color_manual(values=c("green", "red", "blue", "black")) +
+    ggtitle(paste(files[i]))
+  treeL[[j]] <- plotTree
+  if (j %% 9 == 0 ){
+    finalOut <- arrangeGrob(treeL[[1]], treeL[[2]],treeL[[3]],treeL[[4]],
+                            treeL[[5]],treeL[[6]],treeL[[7]],treeL[[8]],
+                            treeL[[9]], ncol=3)
+    ggsave(filename = paste("trees_group",i,".png",sep=""), device = "png",
+           plot = finalOut, width = 15, height = 15, 
+           path = "/Volumes/SP128g/TEMP/treeFiles")
+    j <- 0
+    treeL <- list()
+  }
+}
+
+# draw spectified tree
+treeName <- "group_4637.tre"
+specTree <- read.tree(treeName)
+specTree <- groupOTU(specTree, cls)
+ggtree(specTree) + geom_tiplab(aes(color = group)) +
+  scale_color_manual(values=c("green", "red", "blue", "black")) +
+  ggtitle(paste(specTree))
+
+
 
 Dist2Genome <- vector()
 for (i in 1:length(trees_list)){

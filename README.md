@@ -1,4 +1,7 @@
 ## Data analyses for Pan-Core Genome project
+
+#### Update: July, 9th 2016
+
 ####1\. Data clean-up
 
 Change fasta file with a clean title line for each of the sequence. Then the
@@ -24,12 +27,15 @@ from prokaryotic genome (also works for Archae and virus). The script for genome
 annotation is below:
 
 ```bash
-    #!/bin/bash
-    # save this script as a shell script file
-    FILE=$1
-    prokka --outdir ~/Files/OrthoMCL_turf/Fasta/${FILE%%.fa} \
-    --force --prefix ${FILE%%.fa} --locustag ${FILE%%.fa} \
-    --kingdom Bacteria --addgenes --cpus 11 $FILE
+#!/bin/bash
+# save this script as a shell script file
+FILE=$1
+REF=/home/wjidea/Files/1_OrthologRoary/referenceGenome/NC015138.faa
+
+prokka --outdir /home/wjidea/Files/1_OrthologRoary/prokkaFiles \
+--force --prefix ${FILE%%.fa} --locustag ${FILE%%.fa} \
+--kingdom Bacteria --addgenes --cpus 11 --proteins ${REF} \
+--mincontiglen 200 $FILE
 
 ```
 
