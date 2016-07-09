@@ -30,7 +30,7 @@ annotation is below:
 #!/bin/bash
 # save this script as a shell script file
 FILE=$1
-REF=/home/wjidea/Files/1_OrthologRoary/referenceGenome/NC015138.faa
+REF="/home/wjidea/Files/1_OrthologRoary/referenceGenome/NC015138.faa"
 
 prokka --outdir /home/wjidea/Files/1_OrthologRoary/prokkaFiles \
 --force --prefix ${FILE%%.fa} --locustag ${FILE%%.fa} \
